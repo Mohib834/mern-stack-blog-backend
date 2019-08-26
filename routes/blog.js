@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 router.get('/', async (req, res) => {
     try {
         const blogs = await Blog.find({ public: true });
-
+        console.log(req.cookies, req.headers)
         res.send(blogs);
     } catch (err) {
         res.status(500).send(err);
