@@ -36,6 +36,8 @@ router.get('/myblogs', auth, async (req, res) => {
 // Creating Blog
 router.post('/new', auth, async (req, res) => {
     try {
+        console.log(req.cookies);
+        console.log(req.headers);
         const userId = req.user._id; // User ID who create the blog;
         const { title, subTitle, content, showToPublic } = req.body;
         const blogData = {
