@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const auth = async (req, res, next) => {
     try {
-        const token = req.cookies.token;
+        const token = req.header('Authorization').replace('Bearer ', '');
         const verifiedToken = await jwt.verify(token, 'jsonwebtoken');
 
         const user = await User.findOne({ _id: verifiedToken._id, 'tokens.token': token }); //token.token:token we are doing this to make sure if token is still stored in the user(for sign out later)
